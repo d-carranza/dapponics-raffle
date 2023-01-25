@@ -15,7 +15,16 @@ import "hardhat-contract-sizer"
 // const
 
 const config: HardhatUserConfig = {
-    solidity: "0.8.17",
+    solidity: {
+        compilers: [
+            {
+                version: "0.8.7",
+            },
+            {
+                version: "0.4.24",
+            },
+        ],
+    },
 }
 
 export default config
