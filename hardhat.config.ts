@@ -1,10 +1,12 @@
 import { HardhatUserConfig } from "hardhat/config"
-import "@nomicfoundation/hardhat-toolbox"
-import "dotenv/config"
+import "@typechain/hardhat"
+import "@nomiclabs/hardhat-waffle"
+import "@nomiclabs/hardhat-ethers"
 import "@nomiclabs/hardhat-etherscan"
+import "dotenv/config"
 import "hardhat-gas-reporter"
 import "solidity-coverage"
-
+import "hardhat-contract-sizer"
 import "hardhat-deploy"
 
 const { GOERLI_RPC_URL, PRIVATE_KEY, ETHERSCAN_API_KEY, COINMARKETCAP_API_KEY } = process.env

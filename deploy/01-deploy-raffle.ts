@@ -8,33 +8,32 @@ const deployRaffle: DeployFunction = async function (hre: HardhatRuntimeEnvironm
     const { getNamedAccounts, deployments, network } = hre
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
-    // const chainId: number = network.config.chainId!
+    const chainId: number = network.config.chainId!
 
-    // let ethUsdPriceFeedAddress
+    let vrfCoordinatorV2Address
 
-    // if (chainId == 31337) {
-    //     // Mock
-    //     const ethUsdAggregator = await deployments.get("MockV3Aggregator")
-    //     ethUsdPriceFeedAddress = ethUsdAggregator.address
-    // } else {
-    //     // Modular chain agnostic price feed
-    //     ethUsdPriceFeedAddress = networkConfig[network.name].ethUsdPriceFeed!
-    // }
+    if (chainId == 31337) {
+        // Mock
+        const vrfCoordinatorV2 = await deployments.get("VRFCoordinatorV2")
+        vrfCoordinatorV2Address = vrfCoordinatorV2.address
+
+        const transactionResponse = await vrfCoordinatorV2Mock.crea //Continuar aqui
+    } else {
+        // Modular chain agnostic vrfCoordinatorV2
+        vrfCoordinatorV2Address = networkConfig[chainId].vrfCoordinatorV2!
+    }
     log("-------------------------------------------------------")
     log("Deploying Raffle and waiting for confirmations...")
 
+    const raffleEntranceFee = networkConfig[chainId].raffleEntranceFee
+    const gasLane = networkConfig[chainId].gasLane
+    const args: any[] = [vrfCoordinatorV2Address, raffleEntranceFee, gasLane, ,]
     const Raffle = await deploy("Raffle", {
         from: deployer,
-        args: [],
+        args: args,
         log: true,
-        // we need to wait if on a live network so we can verify properly
-        waitConfirmations: networkConfig[network.name].blockConfirmations || 1,
     })
     log(`Raffle deployed at ${Raffle.address}`)
-
-    if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
-        await verify(Raffle.address, [])
-    }
 }
 
 export default deployRaffle

@@ -4,14 +4,12 @@
         "module": "CommonJS",
         "strict": true,
         "esModuleInterop": true,
-        "outDir": "dist",
+        "outDir": "dist"
         // optional:
         // "suppressImplicitAnyIndexErrors": true
-
-        // From previous project
-        "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true
+        // "forceConsistentCasingInFileNames": true,
+        // "skipLibCheck": true
     },
-    "include": [],
-    "files": ["./hardhat.config.ts"]
+    "include": ["./test", "./deploy", "./deploy-helpers"],
+    "files": ["./hardhat.config.ts", "./helper-hardhat-config.ts"]
 }
