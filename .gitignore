@@ -1,7 +1,17 @@
-node_modules
+#.vscode
+.vscode
 
-.env
-.prettierrc
-
+#hardhat
 artifacts
 cache
+node_modules
+deployments
+coverage
+coverage.json
+typechain
+typechain-types
+
+#environment
+.env
+
+
