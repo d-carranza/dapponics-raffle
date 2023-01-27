@@ -53,12 +53,15 @@ const deployRaffle: DeployFunction = async function (hre: HardhatRuntimeEnvironm
         from: deployer,
         args: args,
         log: true,
+        // we need to wait if on a live network so we can verify properly
+        // waitConfirmations: networkConfig[chainId].blockConfirmations || 5,
     })
     log(`Raffle deployed at ${raffle.address}`)
 
     // Verify the deployment
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...")
+
         await verify(raffle.address, args)
     }
     log("----------------------------------------------------")
