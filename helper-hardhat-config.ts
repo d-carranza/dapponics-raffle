@@ -39,4 +39,10 @@ export const networkConfig: networkConfigInfo = {
     },
 }
 
+export const frontEndContractsFile =
+    "../Lesson 10 NextJS Smart Contract Lottery (Full Stack  Front End)/dapponics-raffle/constants/contractAddress.json"
+
+export const frontEndAbiFile =
+    "../Lesson 10 NextJS Smart Contract Lottery (Full Stack  Front End)/dapponics-raffle/constants/abi.json"
+
 export const developmentChains: string[] = ["hardhat", "localhost"]
